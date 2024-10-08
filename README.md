@@ -13,13 +13,14 @@ This script is useful as it provides the user greater control and visibility int
 # Instructions
 Here are instructions for writing successful commands with this code:
 
-Usage: ./BashScript.sh <-f/-d> <file/directory name> <-p/-l> <file/directory permissions> <-c/-h>
-Options:"
-    -f <filename>: Specify an existing file/Create a new file."
-    -p <filepermissions>: Specify the file permissions. Format: ###"
-    -d <directoryname>: Specify an existing directory/Create a new directory."
-    -l <directorypermissions>: Specify the directory permissions. Format: ###"
-    -c <filename or directoryname>: Specify an existing file or directory to check the permissions of."
+Usage: 
+./BashScript.sh <-f/-d> <file/directory name> <-p/-l> <file/directory permissions> <-c/-h>
+Options:
+    -f <filename>: Specify an existing file/Create a new file.
+    -p <filepermissions>: Specify the file permissions. Format: ###
+    -d <directoryname>: Specify an existing directory/Create a new directory.
+    -l <directorypermissions>: Specify the directory permissions. Format: ###
+    -c <filename or directoryname>: Specify an existing file or directory to check the permissions of.
     -h: Display this help information.
 
 # Examples
@@ -29,7 +30,7 @@ Options:"
 ## Updating the permissions of a file or directory
     File Command: ./BashScript -f file.txt -p 646
     Dirctory Command: ./BashScript -d directory -l 646
-    *Basically the same as creating a file, except your specifying an already-existing file in the command.
+*Basically the same as creating a file, except your specifying an already-existing file in the command.
 ## Checking the permissions of a file or directory
     Checking a file: ./BashScript.sh -f file.txt -c
     Checking a directory: ./BashScript.sh -d directory -c
