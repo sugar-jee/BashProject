@@ -15,12 +15,19 @@ Here are instructions for writing successful commands with this code:
 
 Usage: 
 ./BashScript.sh <-f/-d> <file/directory name> <-p/-l> <file/directory permissions> <-c/-h>
+
 Options:
+
 -f <filename>: Specify an existing file/Create a new file.
+
 -p <filepermissions>: Specify the file permissions. Format: ###
+
 -d <directoryname>: Specify an existing directory/Create a new directory.
+
 -l <directorypermissions>: Specify the directory permissions. Format: ###
+
 -c <filename or directoryname>: Specify an existing file or directory to check the permissions of.
+
 -h: Display this help information.
 
 # Examples
