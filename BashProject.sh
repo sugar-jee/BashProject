@@ -6,7 +6,7 @@
 function display_usage() {
   # hint: you will have multiple echo statements here
   echo ""
-  echo "Usage: $0 <-f/-d> <file/directory name> <-p/-l> <file/directory permissions>"
+  echo "Usage: $0 <-f/-d> <file/directory name> <-p/-l> <file/directory permissions> <-c/-h>"
   echo "Options:"
   echo "  -f <filename>: Specify an existing file/Create a new file."
   echo "  -p <filepermissions>: Specify the file permissions. Format: ###"
@@ -116,7 +116,7 @@ if [[ "$directoryname_switch" == true && "$check_switch" == true ]]; then
         echo "The permissions of $directoryname are $permissions."
         exit 1
     else
-        echo "File does not exist."
+        echo "Directory does not exist."
         display_usage
         exit 1
     # exit
