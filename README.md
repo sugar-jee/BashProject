@@ -16,12 +16,12 @@ Here are instructions for writing successful commands with this code:
 Usage: 
 ./BashScript.sh <-f/-d> <file/directory name> <-p/-l> <file/directory permissions> <-c/-h>
 Options:
-    -f <filename>: Specify an existing file/Create a new file.
-    -p <filepermissions>: Specify the file permissions. Format: ###
-    -d <directoryname>: Specify an existing directory/Create a new directory.
-    -l <directorypermissions>: Specify the directory permissions. Format: ###
-    -c <filename or directoryname>: Specify an existing file or directory to check the permissions of.
-    -h: Display this help information.
+-f <filename>: Specify an existing file/Create a new file.
+-p <filepermissions>: Specify the file permissions. Format: ###
+-d <directoryname>: Specify an existing directory/Create a new directory.
+-l <directorypermissions>: Specify the directory permissions. Format: ###
+-c <filename or directoryname>: Specify an existing file or directory to check the permissions of.
+-h: Display this help information.
 
 # Examples
 ## Creating a file/directory while assigning permissions
@@ -30,11 +30,13 @@ Options:
 ## Updating the permissions of a file or directory
     File Command: ./BashScript -f file.txt -p 646
     Dirctory Command: ./BashScript -d directory -l 646
-*Basically the same as creating a file, except your specifying an already-existing file in the command.
+*These are basically the same as creating a file, except you're specifying an already-existing file in the command.
 ## Checking the permissions of a file or directory
     Checking a file: ./BashScript.sh -f file.txt -c
     Checking a directory: ./BashScript.sh -d directory -c
 
 # Important Notes:
-1. Be sure to use the corresponding arguments for files/dictionaries and their permissions. I.E.: Use -f and -p for files, -d and -l for directories. Don't use -f and -l or -d and -p.
+1. Be sure to use the corresponding arguments for files/dictionaries and their permissions. 
+Use -f and -p for files, -d and -l for directories. 
+Don't use -f and -l together or -d and -p together.
 2. This script is only usable in a Linux environment.
