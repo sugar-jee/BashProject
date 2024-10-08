@@ -15,6 +15,8 @@ function display_usage() {
 #Initialize variables
 filename=""
 directoryname=""
+filepermissions=""
+directorypermissions=""
 
 #Below variables track which options have been provided, allows for customized error messages further below.
 filename_switch=false
@@ -33,25 +35,15 @@ while getopts "f:p:d:l:h" opt; do
                 echo "File '$filename' found."
             else
                 touch "$filename"
-                echo "File '$filename' created."
+                permissions=$(stat -c "%A" $filename)
+                echo "File '$filename' created. Permissions: $permissions"
             fi
             ;;
 
-        # option fp - will process the permissions of the file
+        # option fp - confirm if file permissions were specified. 
         p)
-            filename="$OPTARG"
+            filepermissions="$OPTARG"
             filepermissions_switch=true
-            if [ -z "$permissions" ]; then
-                echo "ERROR: Provide permissions for the file."
-                exit 1
-            fi
-            if [ ! -e "$filename" ]; then
-                echo "ERROR: File '$filename' does not exist."
-                #Doubt this would happen.
-                exit 1
-            fi
-            chmod "$permissions" "$filename"
-            echo "Permissions of file '$filename' are now '$permissions'."
             ;;
 
         # option d - will look for the specified directory and create one if not found.
@@ -59,29 +51,23 @@ while getopts "f:p:d:l:h" opt; do
             directoryname="$OPTARG"
             directoryname_switch=true
             if [ -d "$directoryname" ]; then
-                echo "Directory '$directoryname' found."
+                echo "Directory '$directoryname' found." 
             else
                 mkdir "$directoryname"
-                echo "Directory '$directoryname' created."
+                echo "Directory '$directoryname' created." 
             fi
             ;;
 
-        # option dp - will process the permissions of the file
+        # option dp - confirm if directory permissions were specified.
         l)
-            directoryname=${OPTARG}
-            directorypermssions_switch=true
-            if [ -z "$permissions" ]; then
-                echo "ERROR: Provide permissions for the directory."
-                exit 1
-            fi
-            if [ ! -d "$directoryname" ]; then
-                echo "ERROR: Directory '$directoryname' does not exist."
-                exit 1
-            fi
-            chmod "$permissions" "$directoryname"
-            echo "Permissions of directory '$directoryname' are now '$permissions'."
+            directorypermissions=${OPTARG}
+            directorypermissions_switch=true
             ;;
-
+        # option h - display usage
+        h)
+            display_usage
+            exit 1
+            ;;
         # any other option
         \?)
             echo "Invalid option: -$OPTARG"
@@ -99,6 +85,8 @@ while getopts "f:p:d:l:h" opt; do
             # display usage and exit
     esac
 done
+
+#SWITCH CHECK
 
 # Check if no arguments are provided, provide usage and exit.
 if [[ $OPTIND -eq 1 ]]; then
@@ -118,4 +106,36 @@ if [[ "$directorypermissions_switch" == true && "$directoryname_switch" == false
     echo "ERROR: Provide a directory before inputting directory permissions. If it doesn't already exist, the directory will be created."
     exit 1
     # exit
+fi
+
+# Check if a file permission was provided with the filename
+if [[ "$filename_switch" == true && "$filepermissions_switch" == false ]]; then
+    echo "ERROR: Provide file permissions with the file name."
+    exit 1
+    # exit
+fi
+
+# Check if a directory was provided with the given permissions
+if [[ "$directoryname_switch" == true && "$directorypermissions_switch" == false ]]; then
+    echo "ERROR: Provide directory permissions with the directory name."
+    exit 1
+    # exit
+fi
+
+#CHANGING PERMISSIONS
+
+#If both filename and filepermissions are specified, apply permissions.
+if [[ "$filepermissions_switch" == true && "$filename_switch" == true ]]; then
+    chmod "$filepermissions" "$filename"
+    echo $? #check chmod worked
+    echo "Permissions of file '$filename' are now '$filepermissions'."
+    newpermissions=$(stat -c "%A" $filename)
+    echo "New permissions: $newpermissions"
+fi
+
+#If both directoryname and directorypermissions are specified, apply permissions.
+if [[ "$directorypermissions_switch" == true && "$directoryname_switch" == true ]]; then
+    chmod "$directorypermissions" "$directoryname"
+    echo $? #check chmod worked
+    echo "Permissions of directory '$directoryname' are now '$directorypermissions'."
 fi
