@@ -1,17 +1,17 @@
 # BashProject 
 
 # About
-    BashProject is an assignment for my scripting 3038C course. 
-    This script executes several functions:
-    1. Creating files and directories
-    2. Assigning permissions to newly created files and directories
-    3. Updating the permissions of existing files and directories
-    4. Checking the permissions of existing files and directories
+BashProject is an assignment for my scripting 3038C course. 
+This script executes several functions:
+1. Creating files and directories
+2. Assigning permissions to newly created files and directories
+3. Updating the permissions of existing files and directories
+4. Checking the permissions of existing files and directories
  
-    This script is useful as it provides the user greater control and visibility into the permissions of their files and directories. This script allows the user to create a file and alter the default permissions of the newly created file or directory within the same command. It also has the extra features of altering or checking the permissions of already existing files.
+This script is useful as it provides the user greater control and visibility into the permissions of their files and directories. This script allows the user to create a file and alter the default permissions of the newly created file or directory within the same command. It also has the extra features of altering or checking the permissions of already existing files.
 
 # Instructions
-    Here are instructions for writing successful commands with this code:
+Here are instructions for writing successful commands with this code:
 
 Usage: ./BashScript.sh <-f/-d> <file/directory name> <-p/-l> <file/directory permissions> <-c/-h>
 Options:"
